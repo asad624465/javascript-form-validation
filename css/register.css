@@ -1,5 +1,7 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Roboto:wght@300&display=swap');
+
 *{
 	margin: 0;
 	padding: 0;
@@ -39,8 +41,11 @@ body{
 .wrapper .main-area h1 span{
 	color: #f57224;
 }
+.wrapper .main-area .single-input-area {
+	position: relative;
+}
 .wrapper .main-area .single-input-area input{
-	padding: 12px 10px;
+	padding: 12px 30px;
 	width: 100%;
 	/*border-radius: 5px;*/
 	border:1px solid rgba(0, 0, 0, 0.352);
@@ -73,4 +78,22 @@ body{
 .have-account a{
 	text-decoration: none;
 	color: rgb(32, 32, 32);
+}
+.wrapper .main-area  i{
+    position: absolute;
+}
+.left-icon{
+	left: 0;
+	top: 30%;
+	padding: 0px 5px;
+	color: rgba(0, 0, 0, 0.352);
+}
+.right-icon{
+	right: 0;
+	top: 30%;
+	padding: 0px 5px;
+	color: rgba(0, 0, 0, 0.352);
+}
+.eye-close{
+	display: none;
 }

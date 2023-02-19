@@ -12,7 +12,14 @@
 			<form action="">
 				<h1><span>Registration</span>Form</h1>
 				<div class="input-area">
-					
+					<div class="single-input-area">
+						<input type="text" placeholder="First Name" id="fName">
+						<i class="fa-solid fa-user user_icon left-icon"></i>
+					</div>
+					<div class="single-input-area">
+						<input type="text" placeholder="Last Name" id="lName">
+						<i class="fa-solid fa-user user_icon left-icon"></i>
+					</div>
 					<div class="single-input-area">
 						<input type="email" placeholder="Email..." id="email">
 						<i class="fa-solid fa-envelope email_icon left-icon"></i>
@@ -20,36 +27,25 @@
 					<div class="single-input-area">
 						<input type="password" placeholder="Password" id="password">
 						<i class="fa-solid fa-lock lock_icon left-icon"></i>
-						<i class="fa-solid fa-eye-slash right-icon" id="eye-open" onclick="showPassword()"></i>
-						<i class="fa-solid fa-eye right-icon eye-close" id="eye-close"></i>
+						<i class="fa-solid fa-eye-slash lock_icon right-icon"></i>
+						<i class="fa-solid fa-eye right-icon eye-close"></i>
 					</div>
-					
+					<div class="single-input-area">
+						<input type="password" placeholder="Confirm password" id="cpassword">
+						<i class="fa-solid fa-lock lock_icon left-icon"></i>
+						<i class="fa-solid fa-eye-slash lock_icon right-icon"></i>
+						<i class="fa-solid fa-eye right-icon eye-close"></i>
+					</div>
 					<div class="submit-area">
 						<button type="submit" class="submit-button">Submit</button>
 					</div>
 					<div class="have-account">
 						<a href="">Forget Password</a>
-						<a href="register-form.html">Have on account? Please Login</a>
+						<a href="login-form.html">Have on account? Please Login</a>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript">
-		const showPassword=function(){
-			let password = document.getElementById("password");
-			let eyeOpen=document.getElementById("eye-open");
-				attributeValue=password.getAttribute('type');
-				if(attributeValue=='password'){
-					password.setAttribute('type','text');
-					eyeOpen.classList.add('fa-eye');
-					eyeOpen.classList.remove('fa-eye-slash');
-				}else{
-					password.setAttribute('type','password');
-					eyeOpen.classList.add('fa-eye-slash');
-					eyeOpen.classList.remove('fa-eye');
-				}
-		}
-	</script>
 </body>
 </html>
