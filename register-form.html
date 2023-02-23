@@ -85,9 +85,8 @@
 					let elementName=singleField.parentElement;
 						elementMsg=elementName.querySelector('small').getAttribute("emptyMsg");
 					showErrorMessage(singleField,elementMsg);
-
 				}else{
-					showErrorMessage(singleField,elementMsg);
+					showSuccessMessage(singleField);
 					totalEmpty=totalEmpty-1;
 				}
 			});
@@ -95,7 +94,6 @@
 				validField=true;
 			}
 			return validField;
-			
 		}
 
 		const showPassword=function(){
