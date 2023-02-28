@@ -23,13 +23,13 @@
 						<small class="error" emptyMsg="Last Name cannot be empty!"></small>
 					</div>
 
-					<div class="single-input-area tooltip" data-tooltip="Please Enter a valid email addrese !example:abc@gmail.com">
-						<input type="email" placeholder="Email..." id="email">
+					<div class="single-input-area">
+						<input type="text" placeholder="Email..." id="email">
 						<i class="fa-solid fa-envelope email_icon left-icon"></i>
 						<small class="error" emptyMsg="Email address cannot be empty!"></small>
 					</div>
 
-					<div class="single-input-area tooltip" data-tooltip="Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)">
+					<div class="single-input-area" data-tooltip="Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)">
 
 						<input type="password" placeholder="Password" id="password">
 						<i class="fa-solid fa-lock lock_icon left-icon"></i>
@@ -63,18 +63,20 @@
 			return regex.test(emailAddress.trim())?true:false;
 		}
 		const securePassword=(password)=>{
-			const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+			const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,12})");
     		return regex.test(password);
 		}
 		const showErrorMessage = (inputName,message)=>{
 			var elementName=inputName.parentElement;
 			elementName.className='single-input-area error-msg show-msg';
 			elementName.querySelector('small').innerText=message;
+			return false;
 		}
 		const showSuccessMessage=(inputName)=>{
 			var elementName=inputName.parentElement;
 			elementName.className='single-input-area success-msg show-msg';
 			elementName.querySelector('small').innerText='';
+			return true
 		}
 		const isEmpty=(inputField)=>{
 			let validField=false;
@@ -95,7 +97,24 @@
 			}
 			return validField;
 		}
+		const validPassword=(password,min,max)=>{
 
+			$passswordMsg="Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)";
+			if(minMaxLength(password.value.length,min,max)){
+				if(securePassword(password.value)){
+					showSuccessMessage(password)
+				}else{
+					showErrorMessage(password,$passswordMsg);
+					return false;
+				}
+			}else{
+				showErrorMessage(password,"Password length must be 8-12 characters");
+				return false;
+			}
+			return true;
+		}
+
+		const matchPassword=(password,confirmPassword)=>(password!=confirmPassword)?false:true;
 		const showPassword=function(){
 			let password = document.getElementById("password");
 			let eyeOpen=document.getElementById("eye-open");
@@ -118,8 +137,24 @@
 			confirmPassword=document.getElementById("confirmPassword"),	
 		formName.addEventListener('submit',function(e){
 			e.preventDefault();
+			let emailValid=false;
+			let validPass=false;
+			let matchPass=false;
+			$emailMsg='Please Enter a valid email addrese !example:abc@gmail.com';
+			$conPassMsg='Confirm Password must be similer with password!';
 			let emptyField=isEmpty([firstName,lastName,email,password,confirmPassword]);
-			if(emptyField){
+
+			if(isRequire(email.value)){
+				emailValid=validEmail(email.value)?showSuccessMessage(email):[showErrorMessage(email,$emailMsg)];
+			}
+			if(isRequire(password.value)){
+				validPass=validPassword(password,8,12);
+			}
+			if(isRequire(confirmPassword.value) && isRequire(password.value)){
+				matchPass=matchPassword(password.value,confirmPassword.value)?showSuccessMessage(confirmPassword):showErrorMessage(confirmPassword,$conPassMsg);
+			}
+			let isConditions=emptyField && emailValid && validPass && matchPass;
+			if(isConditions){
 				console.log("okay");
 			}
 		});

@@ -56,6 +56,10 @@ body{
 	font-family: 'Roboto', sans-serif;
 	position: relative;
 }
+.wrapper .main-area .error-msg small{
+	color:red;
+	font-weight: bold;
+}
 .wrapper .main-area .submit-area{
 	text-align: center;
 }
